@@ -1,0 +1,20 @@
+{
+  "name": "docker-indicator",
+  "version": "0.0.1",
+  "description": "Shows docker stats at a glance",
+  "dependencies": {
+    "dockerode": "^2.2.3",
+    "menubar": "*"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.0.1",
+    "electron-prebuilt": "0.30.3"
+  },
+  "main": "main.js",
+  "scripts": {
+    "build": "electron-packager . Example --platform=darwin --arch=x64 --version=0.30.3 --ignore=node_modules/electron --icon=Icon.icns",
+    "start": "electron ."
+  },
+  "author": "Kyle Hornberg <kyle.hornberg@gmail.com>",
+  "license": "MIT"
+}
