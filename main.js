@@ -13,6 +13,9 @@ var lastConnectionStatus = null;
 
 function setIcon() {
   docker.ping((err, data) => {
+    if (data == 'OK') {
+      mb.window.webContents.send('ping', 'connected');
+    }
 
     if (lastConnectionStatus === null && data == 'OK') {
       var NativeImage = require('native-image');
@@ -21,7 +24,6 @@ function setIcon() {
       lastConnectionStatus = 'OK';
 
       // console.log('connected');
-      // mb.window.webContents.send('ping', 'connected!');
     }
 
     if (lastConnectionStatus === 'OK' && data == null) {

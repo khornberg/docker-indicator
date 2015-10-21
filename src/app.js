@@ -8,16 +8,27 @@ var docker      = new Docker();
 //     console.log('connected');
 // });
 
-// docker.listContainers({all: false}, function(err, containers) {
-//   console.log(containers[0]);
-//
-//   $containers.innerHTML = '<h1>Containers</h1>';
-//
-//   containers.forEach(function(container){
-//     console.log(container.Names[0].substr(1), container.Status);
-//     $containers.innerHTML = $containers.innerHTML + '<p>' + container.Names[0].substr(1) + '-' + container.Status + '</p>';
-//   });
-// });
+
+function update() {
+  docker.listContainers({all: false}, function(err, containers) {
+    // console.log(containers[0]);
+
+    var header = '<h1>Containers</h1>';
+    var containerList = null;
+
+    containers.forEach(function(container){
+      // console.log(container.Names[0].substr(1), container.Status);
+      containerList = containerList  + `<p>${container.Names[0].substr(1)} - ${container.Status}</p>`;
+    });
+
+    if (containerList == null) {
+      containerList = 'No containers running';
+    }
+
+    $containers.innerHTML = header + containerList;
+  });
+}
+
 
 // client commo with server, client initiated
 var ipc = require('ipc');
@@ -37,4 +48,7 @@ function sendipc(){
 // server sent
 require('ipc').on('ping', function(message) {
   console.log(message);  // Prints "whoooooooh!"
+  if (message = 'connected') {
+    update();
+  }
 });
