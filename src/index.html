@@ -1,10 +1,39 @@
+<!DOCTYPE html>
 <html>
-<head>
-<title>Containers</title>
-</head>
-<body>
-  <div id="containers">
-  </div>
-  <script src="./app.js"></script>
-</body>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Docker indicator</title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="../bower_components/ratchet/dist/css/ratchet.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <script src="../bower_components/ratchet/dist/js/ratchet.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Make sure all your bars are the first things in your <body> -->
+    <header class="bar bar-nav">
+      <h1 class="title">Containers</h1>
+    </header>
+
+    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+    <div class="content" id="containers">
+    </div>
+    <div class="bar bar-standard bar-footer">
+      <button id="quit" class="btn btn-block">Quit</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+
 </html>

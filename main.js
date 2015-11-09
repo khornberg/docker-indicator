@@ -1,3 +1,7 @@
+/* jshint esnext: true */
+
+"use strict";
+
 var menubar = require('menubar');
 var Docker  = require('dockerode');
 var fs      = require('fs');
@@ -18,17 +22,17 @@ function setIcon() {
     }
 
     if (lastConnectionStatus === null && data == 'OK') {
-      var NativeImage = require('native-image');
-      var image = NativeImage.createFromPath(__dirname + "/IconTemplate@2x.png");
+      let NativeImage = require('native-image');
+      let image = NativeImage.createFromPath(__dirname + "/IconTemplate@2x.png");
       mb.tray.setImage(image);
       lastConnectionStatus = 'OK';
 
       // console.log('connected');
     }
 
-    if (lastConnectionStatus === 'OK' && data == null) {
-      var NativeImage = require('native-image');
-      var image = NativeImage.createFromPath(__dirname + "/IconOffTemplate@2x.png");
+    if (lastConnectionStatus === 'OK' && data === null) {
+      let NativeImage = require('native-image');
+      let image = NativeImage.createFromPath(__dirname + "/IconOffTemplate@2x.png");
       mb.tray.setImage(image);
       lastConnectionStatus = null;
     }
@@ -37,7 +41,7 @@ function setIcon() {
 
 
 mb.once('show', function () {
-  // mb.window.openDevTools();
+  mb.window.openDevTools();
 });
 
 mb.on('ready', function ready () {
@@ -53,7 +57,7 @@ mb.on('ready', function ready () {
   //   event.returnValue = 'pong';
   // });
 
-  setInterval(setIcon, 1000);
+  setInterval(setIcon, 5000);
 
 });
 
