@@ -22,3 +22,13 @@ not running (or at least cannot connect to)
 
 This is very early in development.
 Start with `npm start` or `electron .` from the repo directory.
+
+## TODO
+
+* use docker machine settings if available
+* react to docker events instead of polling
+* make buttons work
+* ui errors, better state management, etc.
+* fix build command
+* build (icons, size, packaging, etc.)
+* configuration via ui?
