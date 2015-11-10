@@ -21,4 +21,4 @@ not running (or at least cannot connect to)
 ## Usage
 
 This is very early in development.
-Start with `npm start` or `electron .` from the reop directory.
+Start with `npm start` or `electron .` from the repo directory.
