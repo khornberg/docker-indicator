@@ -44,8 +44,8 @@ function render_container(container) {
   var button_state = exited ? "negative" : "positive";
   var button_action = exited ? "play" : "stop";
   var name = container.Names[container.Names.length-1].substr(1);
-  var network = container.Ports[container.Ports.length-1];
-  var network_display = `${network.Type}://${network.IP}:${network.PublicPort}->${network.PrivatePort}`;
+  var network = containers.Ports === undefined ? container.Ports[container.Ports.length-1] : false;
+  var network_display = network ? `${network.Type}://${network.IP}:${network.PublicPort}->${network.PrivatePort}` : '';
 
   return `
         <li class="table-view-cell media">
@@ -57,23 +57,47 @@ function render_container(container) {
         </li>`;
 }
 
-function update() {
-  docker.listContainers({all: false}, function(err, containers) {
-    var $containers  = document.getElementById('containers');
-    var containerList = '<ul class="table-view">';
+function myFunction(e){
+  console.log(e)
+}
 
-    // sort or map containers all is true?
-    containers.forEach(function(container){
-      console.log(container);
+function addEventHandlers(){
+  var $containerButtons = document.querySelectorAll('.btn.icon');
+
+  var x = $containerButtons.length - 1;
+  for(x; x>=0; x--){
+    console.log($containerButtons[x])
+    $containerButtons[x].addEventListener('click', myFunction)
+  }
+}
+
+function update() {
+  docker.listContainers({all: true}, function(err, containers) {
+    var $containers  = document.getElementById('containers');
+    var containerList = '<ul class="table-view" style="margin-bottom: 3rem;">';
+
+    var started = containers.filter((container) => {
+      return container.Status.substr(0, 6) === 'Exited' ? false : true;
+    });
+    var stopped = containers.filter((container) => {
+      return container.Status.substr(0, 6) === 'Exited' ? true : false;
+    });
+
+    started.forEach(function(container){
       containerList = containerList + render_container(container);
-        // <li class="table-view-divider">Offline</li>
+    });
+
+    stopped.forEach(function(container){
+      containerList = containerList + render_container(container);
     });
 
     if (containerList === '<ul class="table-view">') {
-      containerList = containerList + '<p>No containers running</p>';
+      containerList = containerList + '<p>No containers to show</p>';
     }
 
-    $containers.innerHTML = containerList + "</ul>";
+    $containers.innerHTML = containerList + '</ul>';
+
+    addEventHandlers();
   });
 }
 
@@ -112,5 +136,10 @@ function quit(){
 
 var $quit = document.getElementById('quit');
 $quit.addEventListener("click", quit);
+
+
+
+
+
 
 //sdg
