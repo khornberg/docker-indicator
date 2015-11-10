@@ -17,10 +17,12 @@ emitter.on("connect", (message) => {
   console.log('connect', message);
   update();
 });
+
 emitter.on("start", (message) => {
   console.log('start', message);
   update();
 });
+
 emitter.on("stop", (message) => {
   console.log('stop', message);
   // Object {status: "start", id: "46eb3fcf245c07a0bdc6ef4c4e5b6d3837d8cc2bfe6543bd6a561475187651e0", from: "redis", time: 1446487348}
@@ -29,11 +31,6 @@ emitter.on("stop", (message) => {
 
 emitter.on("_message", (message) => console.log('message', message));
 emitter.on("disconnect", (message) => console.log('disconnect', message));
-
-
-// docker.ping(function() {
-//     console.log('connected');
-// });
 
 // connect without relying on envvars
 // when starting from app doesn't get envvars because docker machine has not added them
@@ -47,16 +44,17 @@ function render_container(container) {
   var button_state = exited ? "negative" : "positive";
   var button_action = exited ? "play" : "stop";
   var name = container.Names[container.Names.length-1].substr(1);
-  var network = container.Ports[container.Ports.length-1]
-  var network_display = `${network.Type}://${network.IP}:${network.PublicPort}->${network.PrivatePort}`
+  var network = container.Ports[container.Ports.length-1];
+  var network_display = `${network.Type}://${network.IP}:${network.PublicPort}->${network.PrivatePort}`;
+
   return `
         <li class="table-view-cell media">
           <div class="media-body">${name}
             <p>${container.Status}<br/>
             ${network_display}</p>
           </div>
-          <button class="btn btn-${button_state} icon icon-${button_action}"></button>
-        </li>`
+          <button class="btn btn-${button_state} icon icon-${button_action}" id="${container.Id}"></button>
+        </li>`;
 }
 
 function update() {
