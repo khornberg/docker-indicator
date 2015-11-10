@@ -46,11 +46,14 @@ function render_container(container) {
   var exited = container.Status.substr(0, 6) === 'Exited' ? true : false;
   var button_state = exited ? "negative" : "positive";
   var button_action = exited ? "play" : "stop";
-  console.log(exited, button_state, button_action);
+  var name = container.Names[container.Names.length-1].substr(1);
+  var network = container.Ports[container.Ports.length-1]
+  var network_display = `${network.Type}://${network.IP}:${network.PublicPort}->${network.PrivatePort}`
   return `
         <li class="table-view-cell media">
-          <div class="media-body">${container.Names[container.Names.length-1].substr(1)}
-            <p>${container.Status}</p>
+          <div class="media-body">${name}
+            <p>${container.Status}<br/>
+            ${network_display}</p>
           </div>
           <button class="btn btn-${button_state} icon icon-${button_action}"></button>
         </li>`
