@@ -17,17 +17,15 @@ var lastConnectionStatus = null;
 
 function setIcon() {
   docker.ping((err, data) => {
-    if (data == 'OK') {
-      mb.window.webContents.send('ping', 'connected');
-    }
+    // if (data == 'OK') {
+    //   mb.window.webContents.send('ping', 'connected');
+    // }
 
     if (lastConnectionStatus === null && data == 'OK') {
       let NativeImage = require('native-image');
       let image = NativeImage.createFromPath(__dirname + "/IconTemplate@2x.png");
       mb.tray.setImage(image);
       lastConnectionStatus = 'OK';
-
-      // console.log('connected');
     }
 
     if (lastConnectionStatus === 'OK' && data === null) {
@@ -65,6 +63,9 @@ mb.on('ready', function ready () {
 mb.on('show', function () {
   //send events to the page
   // mb.window.webContents.send('ping', 'whoooooooh!');
+  if (lastConnectionStatus == 'OK') {
+    mb.window.webContents.send('ping', 'connected');
+  }
 
 });
 
