@@ -25,11 +25,9 @@ emitter.on("start", (message) => {
 
 emitter.on("stop", (message) => {
   console.log('stop', message);
-  // Object {status: "start", id: "46eb3fcf245c07a0bdc6ef4c4e5b6d3837d8cc2bfe6543bd6a561475187651e0", from: "redis", time: 1446487348}
   update();
 });
 
-emitter.on("_message", (message) => console.log('message', message));
 emitter.on("disconnect", (message) => console.log('disconnect', message));
 
 // connect without relying on envvars
@@ -57,8 +55,13 @@ function render_container(container) {
         </li>`;
 }
 
-function myFunction(e){
-  console.log(e)
+function controlContainer(e){
+  var command = e.srcElement.className.substr(-4);
+  command = command === 'play' ? 'start' : command;
+  var container = docker.getContainer(e.srcElement.id);
+  container[command](function (err, data) {
+    console.log('error', err);
+  });
 }
 
 function addEventHandlers(){
@@ -66,8 +69,7 @@ function addEventHandlers(){
 
   var x = $containerButtons.length - 1;
   for(x; x>=0; x--){
-    console.log($containerButtons[x])
-    $containerButtons[x].addEventListener('click', myFunction)
+    $containerButtons[x].addEventListener('click', controlContainer);
   }
 }
 
@@ -101,23 +103,6 @@ function update() {
   });
 }
 
-
-// client commo with server, client initiated
-// var ipc = require('ipc');
-
-// function sendipc(){
-  // console.log(ipc.sendSync('synchronous-message', 'ping')); // prints "pong"
-// }
-
-// timeout
-// window.setInterval(sendipc, 1000);
-
-// ipc.on('asynchronous-reply', function(arg) {
-//   console.log(arg); // prints "pong"
-// });
-// ipc.send('asynchronous-message', 'ping');
-
-// server sent
 require('ipc').on('ping', function(message) {
   console.log(message);
   if (message === 'connected') {
@@ -125,8 +110,6 @@ require('ipc').on('ping', function(message) {
   }
 });
 
-
-//Add quit
 function quit(){
   var remote = require( 'remote' );
   var app = remote.require( 'app' );
@@ -136,10 +119,5 @@ function quit(){
 
 var $quit = document.getElementById('quit');
 $quit.addEventListener("click", quit);
-
-
-
-
-
 
 //sdg
