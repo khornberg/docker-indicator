@@ -17,10 +17,6 @@ var lastConnectionStatus = null;
 
 function setIcon() {
   docker.ping((err, data) => {
-    // if (data == 'OK') {
-    //   mb.window.webContents.send('ping', 'connected');
-    // }
-
     if (lastConnectionStatus === null && data == 'OK') {
       let NativeImage = require('native-image');
       let image = NativeImage.createFromPath(__dirname + "/IconTemplate@2x.png");
@@ -37,28 +33,13 @@ function setIcon() {
   });
 }
 
-
 mb.once('show', function () {
-  mb.window.openDevTools();
+  // mb.window.openDevTools();
 });
 
 mb.on('ready', function ready () {
-  // receive events from the page
-  // var ipc = require('ipc');
-  // ipc.on('asynchronous-message', function(event, arg) {
-  //   console.log(arg);  // prints "ping"
-  //   event.sender.send('asynchronous-reply', 'pong');
-  // });
-
-  // ipc.on('synchronous-message', function(event, arg) {
-  //   console.log(arg);  // prints "ping"
-  //   event.returnValue = 'pong';
-  // });
-
   setInterval(setIcon, 5000);
-
 });
-
 
 mb.on('show', function () {
   //send events to the page
@@ -66,7 +47,6 @@ mb.on('show', function () {
   if (lastConnectionStatus == 'OK') {
     mb.window.webContents.send('ping', 'connected');
   }
-
 });
 
 //sdg
