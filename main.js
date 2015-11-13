@@ -43,7 +43,6 @@ mb.on('ready', function ready () {
 
 mb.on('show', function () {
   //send events to the page
-  // mb.window.webContents.send('ping', 'whoooooooh!');
   if (lastConnectionStatus == 'OK') {
     mb.window.webContents.send('ping', 'connected');
   }
