@@ -2,10 +2,9 @@
 
 "use strict";
 
-var menubar = require('menubar');
-var Docker  = require('dockerode');
-var fs      = require('fs');
-var docker  = new Docker();
+var menubar  = require('menubar');
+var Docker   = require('dockerode');
+var docker   = require('./src/connect');
 
 var mb = menubar({
   dir: __dirname + "/src",
@@ -44,7 +43,8 @@ mb.on('ready', function ready () {
 mb.on('show', function () {
   //send events to the page
   if (lastConnectionStatus == 'OK') {
-    mb.window.webContents.send('ping', 'connected');
+    mb.window.webContents.send('send', 'connected');
+    mb.window.webContents.send('send', docker);
   }
 });
 

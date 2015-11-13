@@ -29,7 +29,23 @@ Started container list (shows on top)
 This is very early in development.
 Start with `npm start` or `electron .` from the repo directory.
 
+## Connection
+Put a .docker-indicator.yaml file in your home directory.
+
+```
+docker:
+    protocol: https
+    ip: 192.168.99.100
+    port: 2376
+    ca: /Users/user/.docker/machine/machines/default/ca.pem
+    cert: /Users/user/.docker/machine/machines/default/cert.pem
+    key: /Users/user/.docker/machine/machines/default/key.pem
+```
+
 ## Changelog
+
+0.0.2
+* Try to connect to docker smartly
 
 0.0.1
 * UI reacts to Docker events
@@ -37,8 +53,6 @@ Start with `npm start` or `electron .` from the repo directory.
 
 ## TODO
 
-* use docker machine settings if available
 * ui errors, better state management, etc.
-* fix build command
 * build (icons, size, packaging, etc.)
 * configuration via ui?

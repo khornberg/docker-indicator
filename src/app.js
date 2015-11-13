@@ -2,12 +2,9 @@
 
 "use strict()";
 
-var os = require('os');
-var execSync = require('child_process').execSync;
 var Docker       = require('dockerode');
-var fs           = require('fs');
 var DockerEvents = require('docker-events');
-var docker       = connect();
+var docker       = require('./connect');
 
 var emitter = new DockerEvents({
   docker: docker,
@@ -31,36 +28,6 @@ emitter.on("stop", (message) => {
 });
 
 emitter.on("disconnect", (message) => console.log('disconnect', message));
-
-// connect without relying on envvars
-// when starting from app doesn't get envvars because docker machine has not added them
-// nor when starting from a shell with out the docker command run already
-function connect() {
-  if (os.platform != 'Linux') {
-    var output = execSync('docker-machine env default').toString();
-    var lines = output.split('\n');
-    var docker_machine = {};
-    lines.forEach((line) => {
-      x = line.split('=');
-      if (x[0].indexOf('export') >= 0) {
-        docker_machine[x[0].split(' ')[1]] = x[1].replace(/"/g, '');
-      }
-    });
-
-    var ip = docker_machine['DOCKER_HOST'].match(/\w*:\/\/(.*):/)[1];
-    var port = docker_machine['DOCKER_HOST'].match(/\w*:\/\/.*:(.*)/)[1];
-
-    return new Docker({
-      host: ip,
-      port: port,
-      ca: fs.readFileSync(`${docker_machine['DOCKER_CERT_PATH']}/ca.pem`),
-      cert: fs.readFileSync(`${docker_machine['DOCKER_CERT_PATH']}/cert.pem`),
-      key: fs.readFileSync(`${docker_machine['DOCKER_CERT_PATH']}/key.pem`),
-    });
-  }
-  // assumes a local docker connection
-  return new Docker();
-}
 
 function render_container(container) {
   var exited = container.Status.substr(0, 6) === 'Exited' ? true : false;

@@ -5,7 +5,9 @@
   "dependencies": {
     "docker-events": "0.0.2",
     "dockerode": "^2.2.3",
-    "menubar": "*"
+    "menubar": "*",
+    "read-yaml": "^1.0.0",
+    "user-home": "^2.0.0"
   },
   "devDependencies": {
     "electron-packager": "^5.1.1",
@@ -13,7 +15,7 @@
   },
   "main": "main.js",
   "scripts": {
-    "build": "node_modules/.bin/electron-packager . docker-indicator --out=dist --platform=darwin --arch=x64 --version=0.34.2 --ignore=node_modules/electron-packager --icon=Icon.icns --build-version=0.0.1",
+    "build": "node_modules/.bin/electron-packager . docker-indicator --out=dist --platform=darwin --arch=x64 --version=0.34.2 --ignore=\"node_modules/(electron-packager|electron-prebuilt)\" --icon=Icon.icns --build-version=0.0.2",
     "start": "electron ."
   },
   "author": "Kyle Hornberg <kyle.hornberg@gmail.com>",
