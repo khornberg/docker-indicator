@@ -1,0 +1,21 @@
+{
+  "name": "docker-indicator",
+  "description": "Shows docker status at a glance",
+  "main": "main.js",
+  "authors": [
+    "Kyle Hornberg <kyle.hornberg@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/khornberg/docker-indicator",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ratchet": "~2.0.2"
+  }
+}
