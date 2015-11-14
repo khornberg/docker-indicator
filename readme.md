@@ -42,6 +42,9 @@ docker:
     key: /Users/user/.docker/machine/machines/default/key.pem
 ```
 
+### Icon
+(Whale by Aditya Dipankar from the Noun Project)[https://thenounproject.com/search/?q=whale&i=194454]
+
 ## Changelog
 
 0.0.2

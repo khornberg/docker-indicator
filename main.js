@@ -5,29 +5,38 @@
 var menubar  = require('menubar');
 var Docker   = require('dockerode');
 var docker   = require('./src/connect');
+var iconPath = __dirname + "/images/icons/";
 
 var mb = menubar({
   dir: __dirname + "/src",
   preloadWindow: true,
-  icon: __dirname + "/IconTemplate@2x.png"
+  icon: iconPath + "IconTemplate@2x.png"
 });
 
 var lastConnectionStatus = null;
 
+function down() {
+  let NativeImage = require('native-image');
+  let image = NativeImage.createFromPath(iconPath + "IconOffTemplate@2x.png");
+  mb.tray.setImage(image);
+  lastConnectionStatus = null;
+}
+
+function up(){
+  let NativeImage = require('native-image');
+  let image = NativeImage.createFromPath(iconPath + "IconTemplate@2x.png");
+  mb.tray.setImage(image);
+  lastConnectionStatus = 'OK';
+}
+
 function setIcon() {
   docker.ping((err, data) => {
     if (lastConnectionStatus === null && data == 'OK') {
-      let NativeImage = require('native-image');
-      let image = NativeImage.createFromPath(__dirname + "/IconTemplate@2x.png");
-      mb.tray.setImage(image);
-      lastConnectionStatus = 'OK';
+      up();
     }
 
     if (lastConnectionStatus === 'OK' && data === null) {
-      let NativeImage = require('native-image');
-      let image = NativeImage.createFromPath(__dirname + "/IconOffTemplate@2x.png");
-      mb.tray.setImage(image);
-      lastConnectionStatus = null;
+      down();
     }
   });
 }
