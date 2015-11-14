@@ -9,19 +9,23 @@ I often forget if docker is running and this gives a quick visual.
 
 ## Status
 
-running (can make a connection)
+Running (can make a connection)
 
 ![images/up.png](images/up.png)
 
-not running (or at least cannot connect to one)
+Not running (or at least cannot connect to one)
 
 ![images/down.png](images/down.png)
 
-Stopped container list
-![images/stopped-containers.png](images/stopped-containers.png)
+*It can take a few seconds to update the status*
 
 Started container list (shows on top)
+
 ![images/started-container.png](images/started-container.png)
+
+Stopped container list
+
+![images/stopped-containers.png](images/stopped-containers.png)
 
 
 ## Usage
@@ -43,19 +47,20 @@ docker:
 ```
 
 ### Icon
-(Whale by Aditya Dipankar from the Noun Project)[https://thenounproject.com/search/?q=whale&i=194454]
+[Whale by Aditya Dipankar from the Noun Project](https://thenounproject.com/search/?q=whale&i=194454)
 
 ## Changelog
 
-0.0.2
+**0.0.3**
+* New icons
+* UI updates appropriately
+
+**0.0.2**
 * Try to connect to docker smartly
 
-0.0.1
+**0.0.1**
 * UI reacts to Docker events
 * Start/Stop buttons work on containers
 
 ## TODO
-
-* ui errors, better state management, etc.
-* build (icons, size, packaging, etc.)
-* configuration via ui?
+* Builds (icons, packages)

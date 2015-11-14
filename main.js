@@ -31,8 +31,13 @@ function up(){
 
 function setIcon() {
   docker.ping((err, data) => {
+    if (lastConnectionStatus === null && data === null) {
+      down();
+    }
+
     if (lastConnectionStatus === null && data == 'OK') {
       up();
+      mb.window.webContents.send('send', 'new-docker');
     }
 
     if (lastConnectionStatus === 'OK' && data === null) {
@@ -46,6 +51,7 @@ mb.once('show', function () {
 });
 
 mb.on('ready', function ready () {
+  setIcon();
   setInterval(setIcon, 5000);
 });
 
@@ -53,7 +59,6 @@ mb.on('show', function () {
   //send events to the page
   if (lastConnectionStatus == 'OK') {
     mb.window.webContents.send('send', 'connected');
-    mb.window.webContents.send('send', docker);
   }
 });
 
