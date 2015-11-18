@@ -24,6 +24,10 @@ emitter.on("stop", (message) => {
   update();
 });
 
+emitter.on("destroy", (message) => {
+  update();
+});
+
 emitter.on("disconnect", (message) => {
   update();
 });
