@@ -1,6 +1,6 @@
 {
   "name": "docker-indicator",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Shows docker status at a glance",
   "dependencies": {
     "docker-events": "0.0.2",
@@ -10,12 +10,14 @@
     "user-home": "^2.0.0"
   },
   "devDependencies": {
+    "electron-builder": "^2.1.1",
     "electron-packager": "^5.1.1",
     "electron-prebuilt": "0.34.2"
   },
   "main": "main.js",
   "scripts": {
-    "build": "node_modules/.bin/electron-packager . docker-indicator --out=dist --platform=darwin --arch=x64 --version=0.34.2 --ignore=\"node_modules/(electron-packager|electron-prebuilt)\" --icon=Icon.icns --build-version=0.0.2",
+    "pack": "node_modules/.bin/electron-packager . docker-indicator --out=dist --platform=darwin --arch=x64 --version=0.34.2 --ignore=\"node_modules/(electron-packager|electron-prebuilt|electron-builder)\" --icon=images/icons/whale.icns --build-version=0.0.4",
+    "build": "npm run pack && node_modules/.bin/electron-builder \"dist/docker-indicator-darwin-x64/docker-indicator.app\" --platform=osx --out=\"dist\" --config=packager.json",
     "start": "electron ."
   },
   "author": "Kyle Hornberg <kyle.hornberg@gmail.com>",

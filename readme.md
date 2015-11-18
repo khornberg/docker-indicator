@@ -51,6 +51,10 @@ docker:
 
 ## Changelog
 
+**0.0.4**
+* Bug fixes for UI updates
+* OS X build
+
 **0.0.3**
 * New icons
 * UI updates appropriately
@@ -62,5 +66,3 @@ docker:
 * UI reacts to Docker events
 * Start/Stop buttons work on containers
 
-## TODO
-* Builds (icons, packages)
