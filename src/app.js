@@ -102,7 +102,7 @@ function update() {
   });
 }
 
-require('ipc').on('ping', function(message) {
+require('ipc').on('send', function(message) {
   if (message === 'update') {
     update();
   }
