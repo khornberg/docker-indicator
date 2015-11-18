@@ -99,7 +99,7 @@ function update() {
 }
 
 require('ipc').on('ping', function(message) {
-  if (message === 'connected') {
+  if (message === 'update') {
     update();
   }
   if (message === 'new-docker') {

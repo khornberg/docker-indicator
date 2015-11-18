@@ -58,7 +58,7 @@ mb.on('ready', function ready () {
 mb.on('show', function () {
   //send events to the page
   if (lastConnectionStatus == 'OK') {
-    mb.window.webContents.send('send', 'connected');
+    mb.window.webContents.send('send', 'update');
   }
 });
 
