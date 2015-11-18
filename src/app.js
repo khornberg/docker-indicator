@@ -38,7 +38,7 @@ function render_container(container) {
   var button_action = exited ? "play" : "stop";
   var name = container.Names[container.Names.length - 1].substr(1);
   var network = containers.Ports === undefined ? container.Ports[container.Ports.length - 1] : false;
-  var network_display = network ? `${network.Type}://${network.IP}:${network.PublicPort}->${network.PrivatePort}` : '';
+  var network_display = network ? `${network.Type}://${network.IP}:${network.PublicPort} ⇄  ${network.PrivatePort}` : '';
 
   return `
         <li class="table-view-cell media">
