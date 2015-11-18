@@ -92,6 +92,10 @@ function update() {
       });
     }
 
+    if (err) {
+      containerList = containerList + `<li class="table-view-cell">${err}</li>`;
+    }
+
     if (containerList === '<ul class="table-view">') {
       containerList = containerList + '<li class="table-view-cell">No containers to show</li>';
     }

@@ -33,6 +33,7 @@ function setIcon() {
   docker.ping((err, data) => {
     if (lastConnectionStatus === null && data === null) {
       down();
+      mb.window.webContents.send('send', 'update');
     }
 
     if (lastConnectionStatus === null && data == 'OK') {
@@ -42,6 +43,7 @@ function setIcon() {
 
     if (lastConnectionStatus === 'OK' && data === null) {
       down();
+      mb.window.webContents.send('send', 'update');
     }
   });
 }
