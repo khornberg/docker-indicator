@@ -1,7 +1,7 @@
 docker-indicator
 ----------------
 
-Shows an icon in the menu bar with the status of docker.
+Shows an icon in the menu bar with the status of docker and a simple menu to start/stop containers.
 
 **Why?**
 
@@ -30,8 +30,8 @@ Stopped container list
 
 ## Usage
 
-This is very early in development.
-Start with `npm start` or `electron .` from the repo directory.
+A `dmg` is provided in the `releases`.
+Otherwise, in the source directory start with `npm start`.
 
 ## Connection
 Put a .docker-indicator.yaml file in your home directory.
