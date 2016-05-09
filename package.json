@@ -5,6 +5,7 @@
   "dependencies": {
     "docker-events": "0.0.2",
     "dockerode": "^2.2.3",
+    "file-exists": "^1.0.0",
     "menubar": "*",
     "read-yaml": "^1.0.0",
     "user-home": "^2.0.0"
