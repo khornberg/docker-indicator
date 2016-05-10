@@ -17,7 +17,7 @@ Not running (or at least cannot connect to one)
 
 ![images/down.png](images/down.png)
 
-*It can take a few seconds to update the status*
+*It can take a few seconds to update the status if connecting to a docker machine instance*
 
 Started container list (shows on top)
 
@@ -34,8 +34,9 @@ A `dmg` is provided in the `releases`.
 Otherwise, in the source directory start with `npm start`.
 
 ## Connection
-Put a .docker-indicator.yaml file in your home directory.
+In version `0.1.0` a `.docker-indicator.yaml` file in your home directory is **optional**. If no file is found, the default socket at `/var/tmp/docker.sock` is used.
 
+If connecting to a docker machine instance not available via a socket.
 ```
 docker:
     protocol: https
@@ -50,6 +51,10 @@ docker:
 [Whale by Aditya Dipankar from the Noun Project](https://thenounproject.com/search/?q=whale&i=194454)
 
 ## Changelog
+
+0.1.0
+* Use socket by default
+* Update dependencies (electron 0.36.12 amoungst others)
 
 **0.0.4**
 * Bug fixes for UI updates
