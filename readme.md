@@ -52,6 +52,9 @@ docker:
 
 ## Changelog
 
+0.2.0
+* Show better network address
+
 0.1.0
 * Use socket by default
 * Update dependencies (electron 0.36.12 amoungst others)
