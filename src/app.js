@@ -82,7 +82,7 @@ function update() {
     all: true
   }, function(err, containers) {
     var $containers = document.getElementById('containers');
-    var containerList = '<ul class="table-view" style="margin-bottom: 3rem;">';
+    var containerList = '<ul class="table-view" style="margin-bottom: 4rem;">';
 
     if (!err) {
       var started = containers.filter((container) => {
