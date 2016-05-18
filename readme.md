@@ -34,7 +34,7 @@ A `dmg` is provided in the `releases`.
 Otherwise, in the source directory start with `npm start`.
 
 ## Connection
-In version `0.1.0` a `.docker-indicator.yaml` file in your home directory is **optional**. If no file is found, the default socket at `/var/tmp/docker.sock` is used.
+In version `0.1.0` a `.docker-indicator.yaml` file in your home directory is **optional**. If no file is found, the default socket at `/var/run/docker.sock` is used.
 
 If connecting to a docker machine instance not available via a socket.
 ```
@@ -51,6 +51,10 @@ docker:
 [Whale by Aditya Dipankar from the Noun Project](https://thenounproject.com/search/?q=whale&i=194454)
 
 ## Changelog
+
+
+0.2.1
+* Fix socket location with Docker 1.11.1
 
 0.2.0
 * Show better network address

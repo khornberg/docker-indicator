@@ -1,6 +1,6 @@
 {
   "name": "docker-indicator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Shows docker status at a glance",
   "dependencies": {
     "docker-events": "0.0.2",
