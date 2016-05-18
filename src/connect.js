@@ -18,5 +18,5 @@ module.exports = (function () {
       key: fs.readFileSync(config.docker.key),
     });
   }
-  return new Docker({socketPath: '/var/tmp/docker.sock'});
+  return new Docker({socketPath: '/var/run/docker.sock'});
 })();
