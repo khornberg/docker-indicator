@@ -52,6 +52,9 @@ docker:
 
 ## Changelog
 
+0.3.0
+* Updated dependencies
+* Fixed #11, #10, #4
 
 0.2.1
 * Fix socket location with Docker 1.11.1
