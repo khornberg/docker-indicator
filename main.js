@@ -10,7 +10,8 @@ var iconPath = __dirname + "/images/icons/";
 var mb = menubar({
   dir: __dirname + "/src",
   preloadWindow: true,
-  icon: iconPath + "IconTemplate@2x.png"
+  icon: iconPath + "IconTemplate@2x.png",
+  supportsTrayHighlightState: true
 });
 
 var lastConnectionStatus = null;
