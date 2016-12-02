@@ -17,14 +17,14 @@ var mb = menubar({
 var lastConnectionStatus = null;
 
 function down() {
-  let NativeImage = require('native-image');
+  let NativeImage = require('electron').nativeImage;
   let image = NativeImage.createFromPath(iconPath + "IconOffTemplate@2x.png");
   mb.tray.setImage(image);
   lastConnectionStatus = null;
 }
 
 function up(){
-  let NativeImage = require('native-image');
+  let NativeImage = require('electron').nativeImage;
   let image = NativeImage.createFromPath(iconPath + "IconTemplate@2x.png");
   mb.tray.setImage(image);
   lastConnectionStatus = 'OK';
