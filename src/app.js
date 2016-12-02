@@ -5,6 +5,7 @@
 var Docker = require('dockerode');
 var DockerEvents = require('docker-events');
 var docker = require('./connect');
+const { ipcRenderer, remote } = require('electron');
 
 var emitter = new DockerEvents({
   docker: docker,
@@ -115,7 +116,7 @@ function update() {
   });
 }
 
-require('ipc').on('send', function(message) {
+ipcRenderer.on('send', function(message) {
   if (message === 'update') {
     update();
   }
@@ -126,10 +127,7 @@ require('ipc').on('send', function(message) {
 });
 
 function quit() {
-  var remote = require('remote');
-  var app = remote.require('app');
-
-  app.quit();
+  remote.app.quit();
 }
 
 var $quit = document.getElementById('quit');
