@@ -4,23 +4,25 @@
   "description": "Shows docker status at a glance",
   "dependencies": {
     "docker-events": "0.0.2",
-    "dockerode": "^2.2.3",
+    "dockerode": "^2.3.1",
     "file-exists": "^1.0.0",
-    "menubar": "4.1.0",
+    "menubar": "5.1.0",
     "read-yaml": "^1.0.0",
     "user-home": "^2.0.0"
   },
   "devDependencies": {
-    "electron-builder": "^2.1.1",
-    "electron-packager": "^5.1.1",
-    "electron-prebuilt": "0.36.12"
+    "electron-builder": "^10.4.1",
+    "electron": "1.4.10"
   },
   "main": "main.js",
   "scripts": {
-    "pack": "node_modules/.bin/electron-packager . docker-indicator --out=dist --platform=darwin --arch=x64 --version=0.36.12 --ignore=\"node_modules/(electron-packager|electron-prebuilt|electron-builder)\" --icon=images/icons/whale.icns --build-version=0.1.0",
-    "build": "npm run pack && node_modules/.bin/electron-builder \"dist/docker-indicator-darwin-x64/docker-indicator.app\" --platform=osx --out=\"dist\" --config=packager.json",
+    "dist": "build",
     "start": "electron ."
   },
   "author": "Kyle Hornberg <kyle.hornberg@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "build": {
+    "appId": "com.electron.docker-indicator",
+    "category": "development.tools"
+  }
 }
